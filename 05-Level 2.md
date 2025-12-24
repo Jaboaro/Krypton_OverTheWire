@@ -96,14 +96,21 @@ Uso:
 EOF
 }
 
+
+mod(){
+    local a=$1 b=$2
+    echo $(( (a % b + b) % b ))
+}
+
+
 encrypt() {
     local text=$1
-    local shift=$2
+    local offset=$2
     local result
     local char ascii base new
 
-    #Permitimos shifts mayores a 26
-    ((shift%=ALPHABET_SIZE))
+    #Permitimos offsets mayores a 26 (y negativos para desencriptar)
+    offset=$(mod "$offset" "$ALPHABET_SIZE")
 
     for (( i = 0;i < ${#text}; i++)); do 
         char=${text:i:1}
@@ -120,7 +127,7 @@ encrypt() {
                 # O en 97 si son minúsculas
                 base=97
             fi
-            new=$(( (ascii - base + shift) % ALPHABET_SIZE + base ))
+            new=$(( (ascii - base + offset) % ALPHABET_SIZE + base ))
             # Pasamos de decimal a octal y de octal a ASCII
             result+=$(printf "\\$(printf '%03o' "$new")")
         else
@@ -132,10 +139,10 @@ encrypt() {
 }
 bruteforce() {
     local text="$1"
-    local shift
+    local offset
 
-    for shift in $(seq 0 $((ALPHABET_SIZE - 1))); do
-        printf 'Shift %2d: %s\n' "$shift" "$(encrypt "$text" "$(($ALPHABET_SIZE - $shift))")"
+    for offset in $(seq 0 $((ALPHABET_SIZE - 1))); do
+        printf 'offset %2d: %s\n' "$offset" "$(encrypt "$text" "$((-$offset))")"
     done
 }
 
