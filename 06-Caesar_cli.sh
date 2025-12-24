@@ -7,6 +7,7 @@ usage() {
     cat <<EOF
 Uso:
   Encriptar:     $0 -e "texto" <desplazamiento>
+  Desencriptar:  $0 -d "texto" <desplazamiento>
   Fuerza bruta:  $0 -b "texto_cifrado"
 EOF
 }
@@ -71,6 +72,10 @@ main() {
             ;;
         -b)
             bruteforce "$2"
+            ;;
+        -d)
+            [[ $# -ne 3 ]] && { usage; exit 1; }
+            encrypt "$2" "$((-$3))"
             ;;
         *)
             usage
