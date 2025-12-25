@@ -1,4 +1,4 @@
-# Krypton Level 1 → Level 2
+# Krypton Level 2 → Level 3
 ```text
 ROT13 is a simple substitution cipher.
 
