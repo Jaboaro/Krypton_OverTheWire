@@ -52,7 +52,7 @@ $$
 
 Por tanto, necesitamos otro enfoque.
 
-> En [el primer apéndice a este nivel](<04-Level 3-appendix.md>) se puede encontrar una explicación matemática más profunda de este punto. No es necesaria para comprender la resolución del reto pero puede ser de interés para aquellos que quieran conocer de dónde salen estas expresiones.
+> En [el primer apéndice a este nivel](<04-Level 3-appendix-math.md>) se puede encontrar una explicación matemática más profunda de este punto. No es necesaria para comprender la resolución del reto pero puede ser de interés para aquellos que quieran conocer de dónde salen estas expresiones.
 
 
 
