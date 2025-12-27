@@ -56,12 +56,6 @@ $$
 \left| \bigcup_{i=1}^n A_i \right| = \sum_{k=1}^{n} (-1)^{k+1} \sum_{1 \le i_1 < \cdots < i_k \le n} \left| A_{i_1} \cap \cdots \cap A_{i_k} \right|.
 $$
 
-Es decir:
-
-$$
-\begin{aligned} \left|\bigcup_i A_i\right| &= \sum_i |A_i| - \sum_{i<j} |A_i \cap A_j| + \sum_{i<j<k} |A_i \cap A_j \cap A_k| \\ &\quad - \cdots + (-1)^{n+1} |A_1 \cap \cdots \cap A_n|. \end{aligned}
-$$
-
 ---
 
 ## Demostración 
