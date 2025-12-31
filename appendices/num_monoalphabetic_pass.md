@@ -60,7 +60,7 @@ $$
 \left| \bigcup_{i=1}^n A_i \right| = \sum_{k=1}^{n} (-1)^{k+1} \sum_{1 \le i_1 < \cdots < i_k \le n} \left| A_{i_1} \cap \cdots \cap A_{i_k} \right|.
 $$
 
----
+
 
 ### Demostración  de la fórmula
 
@@ -170,7 +170,7 @@ $$
 !n = \left| S_n \setminus \bigcup_{i=1}^n A_i \right|.
 $$
 
----
+
 
 ### Paso 2: tamaños de las intersecciones
 
@@ -191,26 +191,20 @@ $$
 
 Además, hay $\binom{n}{k}$ maneras de elegir qué $k$ letras quedan fijas.
 
----
+
 
 ### Paso 3: aplicación del principio de inclusión–exclusión
 
 El principio de inclusión–exclusión nos dice:
 
 $$
-\left| \bigcup_{i=1}^n A_i \right|
-=
-\sum_{k=1}^{n} (-1)^{k+1}
-\sum_{1 \le i_1 < \cdots < i_k \le n}
-|A_{i_1} \cap \cdots \cap A_{i_k}|.
+\left| \bigcup_{i=1}^n A_i \right|=\sum_{k=1}^{n} (-1)^{k+1}\sum_{1 \le i_1 < \cdots < i_k \le n}|A_{i_1} \cap \cdots \cap A_{i_k}|.
 $$
 
 Sustituyendo los valores obtenidos:
 
 $$
-\left| \bigcup_{i=1}^n A_i \right|
-=
-\sum_{k=1}^{n} (-1)^{k+1} \binom{n}{k}(n-k)!.
+\left| \bigcup_{i=1}^n A_i \right|=\sum_{k=1}^{n} (-1)^{k+1} \binom{n}{k}(n-k)!.
 $$
 
 Por tanto, el número de desarreglos es
@@ -230,7 +224,7 @@ $$
 
 Esta es la **fórmula exacta del número de desarreglos**.
 
----
+
 
 ### Paso 4: aproximación asintótica
 
