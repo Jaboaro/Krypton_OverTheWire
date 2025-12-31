@@ -1,8 +1,12 @@
-# Apéndice matemático sobre el número de contraseñas
+# Apéndice: Número de contraseñas en cifrado monoalfabético con restricciones
+En este apéndice vamos a calcular el número de contraseñas (permutaciones del alfabeto) posibles de un cifrado monoalfabético general. Además, dado que una permutación en la que solo unas pocas letras cambian de posición no oculta el contenido del mensaje, vamos a hacer una estimación de cuántas de estas son adecuadas para la criptografía.
+## Calculo del número total de permutaciones del alfabeto
 
-En el cifrado Caesar (con el alfabeto inglés) decimos que hay $25$ contraseñas porque podemos hacer $25$ desplazamientos distintos antes de volver a la identidad, es decir, antes de que a cada letra se le asocie ella misma. 
+En el cifrado César (con el alfabeto inglés) restringimos el número de contraseñas a $25$  porque podemos hacer $25$ desplazamientos distintos antes de volver a la identidad, es decir, antes de que a cada letra se le asocie ella misma. 
 
-En un cifrado monoalfabético general, el número de contraseñas se obtiene de la siguiente manera. Imaginemos que tenemos 26 “huecos”, uno por cada letra del alfabeto, y que en cada hueco colocamos la letra a la que se asocia en el cifrado.
+En un cifrado monoalfabético general, el número de contraseñas se puede calcular de la siguiente manera:
+
+Imaginemos que tenemos 26 “huecos”, uno por cada letra del alfabeto, y que en cada hueco colocamos la letra a la que se asocia en el cifrado.
 
 - En el primer hueco hay $26$ opciones posibles.
 - Una vez elegida una, en el segundo hueco quedan $25$.
@@ -12,7 +16,7 @@ Por tanto, el número total de maneras de asignar letras a los huecos es
 
 $$26\cdot25\cdots 2\cdot1=26!.$$
 
-### ¿Por qué decimos entonces que el número de contraseñas es *aproximadamente* 26!?
+## Introducción de restricciones
 No todas estas permutaciones pueden considerarse cifrados “válidos”. Por ejemplo:
 - Si en cada hueco colocamos la misma letra que le corresponde, no estamos cifrando nada: obtenemos el texto en claro.
 - También pueden darse permutaciones en las que algunas letras permanecen fijas y solo unas pocas cambian de lugar permitiendo leer el texto sin complicaciones. Por ejemplo, si se quedan todas en su lugar salvo dos de ellas.
@@ -31,8 +35,8 @@ $$
 Esto muestra que, aunque imponer la condición de que ninguna letra permanezca fija reduce el número total de claves, dicho número sigue siendo del orden de $26!$, y por tanto resulta completamente inabordable para un ataque por fuerza bruta.
 
 
-## Demostración de la fórmula para el número de desarreglos
-> Este apendice es completamente voluntario y no es necesario para la resolución de los retos. Si solo estás interesado en las resoluciones puedes saltarlo sin problema.
+## Demostración de la fórmula para el número de contraseñas con restricción
+
 
 Llamaremos desarreglo a una permutación de $n$ elementos en la que ninguno queda en su posición original. Denotaremos por $!n$ el número de desarreglos de $n$ elementos.
 
@@ -48,7 +52,7 @@ Supongamos que queremos contar los elementos que pertenecen a al menos uno de va
 - Para corregir esto, vamos restando y sumando las intersecciones de los diferentes conjuntos para evitar sumar cada uno más de una vez.
 
 
-## Enunciado formal del principio de inclusión–exclusión
+### Enunciado formal del principio de inclusión–exclusión
 
 Para conjuntos finitos $A_1, \dots, A_n$, se cumple:
 
@@ -58,11 +62,11 @@ $$
 
 ---
 
-## Demostración 
+### Demostración  de la fórmula
 
 Daremos una demostración basada en conteo punto a punto.
 
-### Paso 1: fijar un elemento arbitrario
+#### Paso 1: fijar un elemento arbitrario
 
 Sea $x$ un elemento del universo. Supongamos que pertenece exactamente a $r$ de los conjuntos $A_1, \dots, A_n$.
 
@@ -72,9 +76,9 @@ $$
 x \in A_{i_1}, A_{i_2}, \dots, A_{i_r}, \quad \text{y} \quad x \notin A_j \text{ para los demás}.
 $$
 
----
 
-### Paso 2: cuántas veces aparece $x$ en la fórmula
+
+#### Paso 2: cuántas veces aparece $x$ en la fórmula
 
 Analicemos cuántas veces contribuye $x$ al valor total del lado derecho de la fórmula.
 
@@ -107,9 +111,8 @@ $$
 \sum_{k=1}^{r} (-1)^{k+1} \binom{r}{k}.
 $$
 
----
 
-### Paso 3: evaluación de la suma
+#### Paso 3: evaluación de la suma
 
 Recordemos la identidad binomial:
 
@@ -131,9 +134,9 @@ $$
 
 Esto demuestra que **cada elemento que pertenece al menos a uno de los conjuntos contribuye exactamente una vez** a la suma total.
 
----
 
-### Paso 4: conclusión
+
+#### Paso 4: conclusión
 
 -   Si un elemento pertenece a al menos uno de los conjuntos, contribuye exactamente con 1.
     
@@ -146,10 +149,7 @@ $$
 \left| \bigcup_{i=1}^n A_i \right|.
 $$
 
-Esto completa la demostración rigurosa del principio de inclusión–exclusión. ∎
-
----
-
+Esto completa la demostración.
 
 ## Número de desarreglos
 Con esto claro, estamos en disposición de calcular el número de desarreglos

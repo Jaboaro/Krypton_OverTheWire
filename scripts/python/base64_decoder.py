@@ -72,7 +72,7 @@ def base64_decode(encoded: str) -> bytes:
 
 
 def main():
-    txt = "Hola á ë"
+    txt = "Hola á ë ñu"
     encoded = base64_encode(txt.encode("utf-8"))
     decoded = base64_decode(encoded).decode("utf-8")
 
