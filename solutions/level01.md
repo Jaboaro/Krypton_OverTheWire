@@ -94,7 +94,7 @@ Salida (extracto):
 ```text
 ...
 offset 12: MFWFM UXP QBTTXPSE SPUUFO
-offset 13: LEVEL TWO PASSWORD ROTTEN
+offset 13: LEVEL TWO PASSWORD XXXXXX
 offset 14: KDUDK SVN OZRRVNQC QNSSDM
 ...
 ```
