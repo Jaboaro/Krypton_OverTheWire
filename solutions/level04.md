@@ -91,7 +91,7 @@ Por último, probamos los distintos candidatos hasta dar con la solución espera
 
 Descargamos los archivos del servidor:
 ```bash
-scp -P 2231 krypton4@krypton.labs.overthewire.org:"/krypton/krypton3/*" .
+scp -P 2231 krypton4@krypton.labs.overthewire.org:"/krypton/krypton4/*" .
 ```
 Comprobamos la longitud del primer archivo encontrado:
 ```bash
