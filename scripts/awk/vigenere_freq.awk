@@ -109,7 +109,8 @@ END {
             idx_out++
         }
 
-        # compact visual output
+        best_key[col] = ordered_keys[0]
+        # compact visual outpu
         printf "CHARS: "
         for (i=0;i<idx_out;i++){
             printf "%s", ordered_chars[i]
@@ -124,6 +125,12 @@ END {
         }
         print "\n"   
     }
+
+    printf "Best key: "
+    for (col = 1; col <= key_len; col++){
+        printf "%s", best_key[col]
+    }
+    print ""
 }
 
 function ord(c) {
