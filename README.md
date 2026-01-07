@@ -64,6 +64,11 @@ Krypton_OverTheWire/
 |   ├──num_monoalphabetic_pass.md
 │   └── ...
 │
+├── data/                 
+│   └── frec
+│       ├── en.txt
+│       └── ...
+│
 └── scripts/
     ├── bash/
     │   ├── base64_decoder.sh
@@ -79,6 +84,8 @@ Krypton_OverTheWire/
         └── ...
 
 ```
+## Modelos de frecuencia
+Algunos scripts se basan en modelos de frecuencia lingüística para el criptoanálisis estadístico (p. ej., la puntuación de chi-cuadrado). Estos modelos se almacenan por separado en `data/frec`. Este diseño mantiene la lógica criptográfica independiente de las suposiciones lingüísticas y permite experimentar fácilmente con diferentes alfabetos o idiomas sin modificar el código de análisis. Se utiliza el modelo inglés de manera predeterminada a menos que se sobrescriba mediante el parámetro `freq_file`. Para mayor comodidad o para realizar pruebas rápidas, las frecuencias se pueden incorporar directamente al script si se requiere portabilidad.
 ## Estado del proyecto
 En progreso. Algunos de los niveles están pendientes de completar.
 ## Referencias
