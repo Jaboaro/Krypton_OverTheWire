@@ -54,8 +54,9 @@ BEGIN {
         print "Error: could not load frequency file: " freq_file > "/dev/stderr"
         exit 1
     }
+    
     alphabet_len = length(alphabet)
-    print freq_len
+
     if (alphabet_len != freq_len) {
         print "Warning: alphabet and frequency model size differ" > "/dev/stderr"
     }
