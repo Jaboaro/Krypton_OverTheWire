@@ -31,7 +31,7 @@
 #   - Supports multiple ciphertext files encrypted with
 #     the same Vigenère key
 #   - English language frequency model
-#   - Intended for educational / portfolio purposes
+#   - Intended for educational purposes only
 # ============================================================
 
 BEGIN {

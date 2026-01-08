@@ -1,60 +1,68 @@
-# ==================================================
+# ============================================================
 # Project: Krypton Writeups
 # Script: vigenere_try.awk
-# ==================================================
 # Author: Javier Laguna
 #
-# Purpose:
-#   Decode a Vigenère-encrypted ciphertext using a user-supplied key.
-#
 # Description:
-#   This AWK script applies a given Vigenère key to a ciphertext in
-#   order to recover the plaintext. The script assumes that the ciphertext 
-#   consists only of uppercase letters A–Z.
+#   Decrypt a Vigenère-encrypted ciphertext using a known key.
+#   The script automatically normalizes input, ignores
+#   non-alphabet characters, and supports multiple input files.
 #
-#   The key is applied cyclically across the ciphertext, subtracting
-#   the corresponding key letter shift from each character and
-#   recomposing the plaintext in its original order.
-#
-#   This tool is intended to be used together with a frequency analysis
-#   script (vigenere_freq.awk), allowing the user to manually test candidate
-#   keys derived from statistical analysis.
+#   Alphabet and key are treated consistently as index-based
+#   symbols, allowing easy adaptation to different languages
+#   or custom alphabets.
 #
 # Features:
-#   - Vigenère decryption with a known key
-#   - Simple, direct recomposition of plaintext
-#   - Designed for manual cryptanalysis workflows
+#   - Vigenère decryption with known key
+#   - No manual preprocessing required
+#   - Supports multiple input files
+#   - Configurable alphabet
 #
 # Usage:
-#   awk -v key=SECRET -f vigenere_try.awk ciphertext.txt
+#   awk -v key=SECRET \
+#       [-v alphabet=ABCDEFGHIJKLMNOPQRSTUVWXYZ] \
+#       -f vigenere_try.awk ciphertext1 [ciphertext2 ...]
 #
 # Notes:
-#   - The key must be provided via the -v key=... argument
-#   - Input text must be uppercase A–Z with no spaces or punctuation
-#   - No validation is performed on key length or characters
-#   - This tool is intended for educational and cryptographic learning
-#     purposes only
-# ==================================================
+#   - Only characters present in the alphabet are decrypted
+#   - Other characters are preserved as-is
+#   - Intended for educational purposes only
+# ============================================================
 
 BEGIN {
-    keylen = length(key)
-    A = ord("A")
+    alphabet     = alphabet ? alphabet : "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    alphabet_len = length(alphabet)
+
+    if (!key || length(key) == 0) {
+        print "Error: key must be provided via -v key=..." > "/dev/stderr"
+        exit 1
+    }
+
+    key = toupper(key)
+    key_len = length(key)
+    pos = 0
 }
 
 {
+    $0 = toupper($0)
+
     for (i = 1; i <= length($0); i++) {
-        cipher_char = substr($0, i, 1)
-        col = (i - 1) % keylen
-        key_char  = substr(key, col + 1, 1)
+        char = substr($0, i, 1)
+        char_idx = index(alphabet, char)
 
-        shift = ord(key_char)
+        if (char_idx) {
+            key_char = substr(key, (pos % key_len) + 1, 1)
+            key_idx  = index(alphabet, key_char)
 
-        plain_val = (ord(cipher_char) - shift + 26) % 26
-        printf "%c", plain_val + A
+            plain_idx = (char_idx - key_idx + alphabet_len) % alphabet_len
+            plain_char = substr(alphabet, plain_idx + 1, 1)
+
+            printf "%s", plain_char
+            pos++
+        } else {
+            # Preserve non-alphabet characters
+            printf "%s", char
+        }
     }
     print ""
-}
-
-function ord(c) {
-    return index("ABCDEFGHIJKLMNOPQRSTUVWXYZ", c) - 1 + 65
 }
