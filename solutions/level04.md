@@ -105,15 +105,19 @@ Consta de 1450 caracteres, que no es multiplo de 6, es necesario eliminar 4 cara
 
 Como la codificación del texto es ASCII, cada letra ocupa un byte y podemos eliminarla con el siguiente comando.
 ```bash
-cat found1 | tr -d " "| head -c -4 > found1
+cat found1 | tr -d " "| head -c -4 > found1_esp
 ```
 Para el segundo no necesitamos preocuparnos por el padding
 ```bash
-cat found1 found2 |tr -d " " > found.txt
+cat found1_esp found2 | tr -d " " > found.txt
 ```
 Comenzamos con el análisis de frecuencia
 ```bash
 awk -f vigenere_freq.awk -v keylen=6 found.txt
+```
+> NOTA: La nueva versión del programa ya no requiere de preprocesado manual. El siguiente comando proporciona el mismo resultado:
+```bash
+awk -f vigenere_freq.awk -v key_len=6 found1 found2
 ```
 Salida:
 ```text
@@ -146,7 +150,10 @@ CHARS: IXSLWEMVRPYHAGJQKCTOFZ
 CHARS: CRMFYLPBQGJSWUDKIENAZTH
        ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
  KEYS: YNIBUHLXMCFOSQZGEAJWVPD
+
+Best key: FREKEY
 ```
+
 Lo que nos proporciona nuestra primera posible contraseña (la más plausible tomando la primera letra de cada lista)
 ```bash
 awk -f vigenere_try.awk -v key="FREKEY" found.txt

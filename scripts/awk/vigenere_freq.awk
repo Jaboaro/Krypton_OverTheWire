@@ -42,9 +42,9 @@
 
 
 BEGIN {
-    A = ord("A")
-    assumed = ord(assumed ? assumed : "E")
     alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    A        = ord("A")
+    assumed  = ord(assumed ? assumed : "E")
     if (!key_len || key_len<=0){
         print "Error: key_len must be provided (-v key_len=N)" > "/dev/stderr"
         exit 1
@@ -134,7 +134,7 @@ END {
 }
 
 function ord(c) {
-    return index("ABCDEFGHIJKLMNOPQRSTUVWXYZ", c) - 1 + 65
+    return index(alphabet, c) - 1 + 65
 }
 function count_freq_by_col(key_len, texts, lengths, alphabet, freq, col_lengths,
                            col, file, usable_len, i, char, idx){
