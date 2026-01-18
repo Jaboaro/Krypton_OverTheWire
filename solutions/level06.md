@@ -113,6 +113,4 @@ Este nivel introduce conceptos fundamentales de la criptografía moderna:
 
 El ejercicio demuestra que **un cifrado moderno con una fuente de aleatoriedad débil puede ser tan inseguro como un cifrado clásico mal diseñado**, e incluso degradarse a esquemas equivalentes a Vigenère o XOR con clave repetida.
 
-En el directorio de scripts se incluye además un script AWK adicional que realiza el mismo tipo de análisis para **cifrados XOR**, ya que por el enunciado del ejercicio parecía razonable asumir inicialmente que el archivo objetivo estaría cifrado mediante XOR. Finalmente no fue necesario, pero se mantiene como referencia, ya que el ataque y el razonamiento son conceptualmente idénticos.
-
 Este nivel refuerza una lección clave: **la seguridad criptográfica no reside únicamente en el algoritmo**, sino en todos los componentes que lo rodean, especialmente en la calidad de la aleatoriedad empleada. Un PRNG débil convierte cualquier cifrado, por sofisticado que sea en apariencia, en un sistema completamente vulnerable.
